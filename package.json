@@ -1,0 +1,48 @@
+{
+  "name": "favourity",
+  "version": "1.0.0",
+  "description": "Extensible umbrella platform hosting modular, topic-specific personal ranked list sub-websites with client-side binary search and Cloudflare D1/KV edge architecture.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy",
+    "d1:migrate:local": "wrangler d1 execute favourity-db --local --file=./migrations/0001_initial_schema.sql",
+    "d1:migrate:remote": "wrangler d1 execute favourity-db --remote --file=./migrations/0001_initial_schema.sql",
+    "cron:test:daily": "curl -X POST http://localhost:8787/api/cron/run?type=daily",
+    "cron:test:weekly": "curl -X POST http://localhost:8787/api/cron/run?type=weekly"
+  },
+  "keywords": [
+    "cloudflare",
+    "d1",
+    "kv",
+    "cron-triggers",
+    "binary-search",
+    "ranking"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21",
+    "wrangler": "^3.114.17"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.1"
+  }
+}

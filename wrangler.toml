@@ -1,0 +1,25 @@
+name = "favourity"
+main = "src/worker/index.ts"
+compatibility_date = "2024-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+# D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "favourity-db"
+database_id = "d1-favourity-prod-001"
+
+# Cloudflare KV Binding
+[[kv_namespaces]]
+binding = "LEADERBOARD_KV"
+id = "kv_favourity_leaderboard_001"
+
+# Cloudflare Cron Triggers:
+# 1. "0 12 * * *" : Daily 12:00 PM UTC batch aggregation
+# 2. "0 0 * * 0"  : Sunday 00:00 UTC weekly reset
+[triggers]
+crons = ["0 12 * * *", "0 0 * * 0"]
