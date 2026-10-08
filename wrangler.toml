@@ -11,15 +11,15 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "favourity-db"
-database_id = "d1-favourity-prod-001"
+database_id = "342f38a9-b0ad-4746-b389-b17f899135e0"
 
 # Cloudflare KV Binding
 [[kv_namespaces]]
 binding = "LEADERBOARD_KV"
-id = "kv_favourity_leaderboard_001"
+id = "6264d9ee90d2449ea552025b406b6aa0"
 
 # Cloudflare Cron Triggers:
-# 1. "0 12 * * *" : Daily 12:00 PM UTC batch aggregation
-# 2. "0 0 * * 0"  : Sunday 00:00 UTC weekly reset
+# 1. "0 12 * * *"   : Daily 12:00 PM UTC batch aggregation
+# 2. "0 0 * * SUN"  : Sunday 00:00 UTC weekly reset
 [triggers]
-crons = ["0 12 * * *", "0 0 * * 0"]
+crons = ["0 12 * * *", "0 0 * * SUN"]

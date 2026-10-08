@@ -94,13 +94,13 @@ export default {
 
   /**
    * Cloudflare Cron Triggers:
-   * - "0 12 * * *" : Daily 12:00 PM UTC Aggregation
-   * - "0 0 * * 0"  : Sunday 00:00 UTC Weekly Reset
+   * - "0 12 * * *"  : Daily 12:00 PM UTC Aggregation
+   * - "0 0 * * SUN" : Sunday 00:00 UTC Weekly Reset
    */
   async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
     console.log(`[Favourity Cron] Triggered cron expression: ${event.cron} at ${new Date(event.scheduledTime).toISOString()}`);
 
-    if (event.cron === '0 0 * * 0') {
+    if (event.cron === '0 0 * * SUN' || event.cron === '0 0 * * 0' || event.cron === '0 0 * * 1') {
       // Weekly reset
       ctx.waitUntil(executeWeeklyReset(env));
     } else {
